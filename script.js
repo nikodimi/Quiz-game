@@ -194,7 +194,7 @@ const shuffleArray = (array) => {
 const startGame = () => {
 	// Add eventlistener to start button
 	startBtn.addEventListener("click", (e) => {
-		
+
 		// Set and remove visible elements
 		quizEl.classList.add("show");
         startEl.classList.remove('show');
@@ -215,4 +215,71 @@ const startGame = () => {
             highScoreEl.innerHTML = `Current Highscore: ${highScore}`;
         }
 	})
+};
+
+const create = () => {
+	//Create new array
+    newStudents = students.map((student) => {
+        return {
+            name: student.name,
+            image: student.image,
+        };
+    });
+
+    // Shuffle the array
+    shuffleArray(newStudents);
+
+	// Set total questions to the length of created array
+	totalQuestions = newStudents.length;
+
+	// Get all names from new array
+    randomNames = newStudents.map((student) => student.name);
+
+	// Calls the render functions
+    render();
+}
+
+const render = () => {
+	// Increase question number and empty options list
+    questionNum++;
+    optionsEl.innerHTML = "";
+
+	// Get correct image and name
+    correctImage = newStudents[0].image;
+    correctName = newStudents[0].name;
+
+	// shuffle array of names
+    shuffleArray(randomNames);
+
+	// Get all names except the right one
+    let sorted = randomNames.filter((random) => random !== correctName);
+
+	// Fill empty array with 3 wrong names
+    let tempNames = [];
+    for (let i = 0; i < 3; i++) {
+        tempNames.push(sorted[i]);
+    }
+
+	// Push the right name in array and shuffle
+    tempNames.push(correctName);
+    shuffleArray(tempNames);
+
+    // Print out image and list of alternatives
+	image.src = correctImage;
+
+    for (let i = 0; i < tempNames.length; i++) {
+        optionsEl.innerHTML += `<li class="list-item">${tempNames[i]}</li>`;
+    }
+
+    // Print out points and number of questions
+    pointCounter.innerHTML = `Points = ${points}`;
+    questionCounter.innerHTML = `Question ${questionNum}/${totalQuestions}`;
+
+    // Remove student in first position of array
+    newStudents.shift();
+
+	// If last question, change button text
+    if (questionNum === totalQuestions) {
+        nextBtn.innerHTML = "Avsluta";
+    }
 };
