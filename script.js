@@ -349,3 +349,16 @@ optionsEl.addEventListener("click", (e) => {
         }
     } 
 });
+
+const reset = () => {
+
+	// Set and remove visible elements
+	quizEl.classList.remove('show');
+	startEl.classList.add('show');
+
+	//Start game
+	startGame();
+}
+
+//Start Game
+startGame();
