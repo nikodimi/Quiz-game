@@ -1,3 +1,14 @@
+// Get references to DOM elements
+const startEl = document.querySelector(".start-box");
+const quizEl = document.querySelector(".quiz-box");
+const optionsEl = document.querySelector("#option-list");
+const nextBtn = document.querySelector(".next-button");
+const startBtn = document.querySelector(".startBtn");
+const questionCounter = document.querySelector("#question-counter");
+const pointCounter = document.querySelector("#point-counter");
+const image = document.querySelector(".img-wrapper img");
+const highScoreEl = document.querySelector('.highscore');
+
 // The students array
 const students = [
     {	
@@ -157,3 +168,15 @@ const students = [
         image: "assets/images/students/wiktoria-dobrzewinska.jpg",
 	},
 ];
+
+// Declarations of variables
+let newStudents = [];
+let questionNum;
+let correctImage;
+let correctName;
+let totalQuestions;
+let points;
+let highScore = false;
+
+// Set button text
+startBtn.innerHTML = "Start";
