@@ -12,7 +12,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 100%;
+    width: 90%;
 }
 
 .start-box {
@@ -29,7 +29,7 @@ body {
 
 .quiz-box.show {
     display: block;
-    max-width: 500px;
+    max-width: 350px;
 }
 
 .img-wrapper img {
@@ -46,10 +46,11 @@ body {
 .list-item {
     border-radius: 10px;
     margin-top: 10px;
-    padding: 10px 0;
+    padding: 12px 0;
     text-align: center;
     background-color: rgb(255, 255, 255);
     color: rgb(82, 81, 81);
+    font-size: 14px;
     font-weight: bold;
     cursor: pointer;
 }
@@ -71,7 +72,8 @@ body {
 .btn {
     background-color: rgb(255, 255, 255);
     color: rgb(82, 81, 81);
-    padding: 10px 25px;
+    padding: 5px 20px;
+    font-size: 14px;
     font-weight: bold;
     border-radius: 10px;
 }
@@ -85,7 +87,7 @@ body {
 
 .score-box p {
     margin: 0;
-    font-size: 14px;
+    font-size: 12px;
 }
 
 .highscore {
@@ -93,20 +95,20 @@ body {
     font-size: 14px;
 }
 
-@media (max-width: 767px) {
+@media (min-width: 767px) {
     .container {
-        width: 90%;
+        width: 100%;
     }
     .list-item  {
-        padding: 12px 0;
-        font-size: 14px;
+        padding: 10px 0;
+        font-size: 16px;
     }
     .score-box p {
-        font-size: 12px;
+        font-size: 14px;
     }
     .btn {
-        padding: 5px 20px;
-        font-size: 14px; 
+        padding: 10px 25px;
+        font-size: 16px; 
     }
 }
 
@@ -121,8 +123,8 @@ body {
     }
 }
 
-@media (max-width: 1600px) {
+@media (min-width: 1600px) {
     .quiz-box.show {
-        max-width: 350px;
+        max-width: 500px;
     }
 }
