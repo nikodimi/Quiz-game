@@ -283,3 +283,69 @@ const render = () => {
         nextBtn.innerHTML = "Avsluta";
     }
 };
+
+// Add eventlistener to next-button
+nextBtn.addEventListener("click", (e) => {
+
+	// Check if question isn't the last one
+    if (questionNum !== totalQuestions) {
+		// Disable button
+        nextBtn.disabled = true;
+		// Render question	
+        render();
+    } else {
+		// Check if highscore exists
+        if (highScore) {
+			// Check if points is higher, lower or the same as highscore
+            if (points > highScore) {
+				highScore = points;
+                alert(`Wow! You got a new highscore of ${highScore}!`);
+            } else if (points < highScore) {
+                alert(`Not good! What happened? You got just ${points} points.`);
+            }	else {
+				alert(`Not better, but not worse than your highscore`);
+			}	
+        } else {
+			// Show result
+			alert(`You got ${points} points.`);
+			// Set highscore
+            highScore = points;
+        }
+		// Reset game
+        reset();
+    }
+});
+
+// Add eventlistener to list-items
+optionsEl.addEventListener("click", (e) => {
+
+	// Get all list-items
+    let listItems = document.querySelectorAll(".list-item");
+
+	// Check if target is a list-item
+    if (e.target.tagName === "LI") {
+
+		// Check if answer is right
+        if (e.target.innerHTML === correctName) {
+			// Add class of correct, disable button, increase and print points, disable list-items 
+            e.target.classList.add("correct");
+            nextBtn.disabled = false;
+            points++;
+            pointCounter.innerHTML = `Points = ${points}`;
+            listItems.forEach((listItem) => {
+                listItem.classList.add("disabled");
+            });
+		// If Answer is wrong
+        } else {
+			// Add class of wrong, disable button, disable list-items and add class of correct to right list-item
+            e.target.classList.add("wrong");
+            nextBtn.disabled = false;
+            listItems.forEach((listItem) => {
+                listItem.classList.add("disabled");
+                if (listItem.innerHTML === correctName) {
+                    listItem.classList.add("correct");
+                }
+            });
+        }
+    } 
+});
