@@ -180,3 +180,39 @@ let highScore = false;
 
 // Set button text
 startBtn.innerHTML = "Start";
+
+// Fisher Yates shuffle function
+const shuffleArray = (array) => {
+    for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        const temp = array[i];
+        array[i] = array[j];
+        array[j] = temp;
+    }
+};
+
+const startGame = () => {
+	// Add eventlistener to start button
+	startBtn.addEventListener("click", (e) => {
+		
+		// Set and remove visible elements
+		quizEl.classList.add("show");
+        startEl.classList.remove('show');
+
+		// Set the button text and disable it on start
+        nextBtn.innerHTML = "Next";
+        nextBtn.disabled = true;
+        
+		// Set the question number and points
+        questionNum = 0;
+        points = 0;
+
+		// Create our new array of students
+        create();
+
+		// Checks if highscore exists and prints out to DOM
+        if (highScore) {
+            highScoreEl.innerHTML = `Current Highscore: ${highScore}`;
+        }
+	})
+};
